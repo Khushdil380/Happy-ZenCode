@@ -1,0 +1,252 @@
+{
+    "name": "happy-zencode",
+    "displayName": "Happy Zencode",
+    "description": "A comprehensive VS Code customization extension with themes and background images",
+    "version": "1.0.0",
+    "publisher": "Khushdil Ansari",
+    "icon": "assets/icon.png",
+    "galleryBanner": {
+        "color": "#FF6B6B",
+        "theme": "dark"
+    },
+    "engines": {
+        "vscode": "^1.104.0"
+    },
+    "categories": [
+        "Themes",
+        "Other"
+    ],
+    "keywords": [
+        "theme",
+        "background",
+        "customization",
+        "zencode",
+        "happy",
+        "UI",
+        "personalization"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "happy-zencode.openConfig",
+                "title": "Open Configuration",
+                "category": "Happy Zencode"
+            },
+            {
+                "command": "happy-zencode.selectTheme",
+                "title": "Select Theme",
+                "category": "Happy Zencode"
+            },
+            {
+                "command": "happy-zencode.uploadBackground",
+                "title": "Upload Background Image",
+                "category": "Happy Zencode"
+            },
+            {
+                "command": "happy-zencode.install",
+                "title": "Install Theme",
+                "category": "Happy Zencode"
+            },
+            {
+                "command": "happy-zencode.uninstall",
+                "title": "Uninstall Theme",
+                "category": "Happy Zencode"
+            },
+            {
+                "command": "happy-zencode.reload",
+                "title": "Reload Theme",
+                "category": "Happy Zencode"
+            }
+        ],
+        "configuration": {
+            "title": "Happy Zencode",
+            "properties": {
+                "happy-zencode.selectedTheme": {
+                    "type": "string",
+                    "default": "custom",
+                    "enum": [
+                        "custom",
+                        "zen-ocean",
+                        "zen-forest",
+                        "zen-sunset",
+                        "zen-night",
+                        "zen-cosmic"
+                    ],
+                    "enumDescriptions": [
+                        "Custom theme with user-defined backgrounds",
+                        "Ocean-inspired blue theme",
+                        "Forest-inspired green theme",
+                        "Sunset-inspired orange/pink theme",
+                        "Night-inspired dark theme",
+                        "Cosmic-inspired purple theme"
+                    ],
+                    "description": "Select the active theme"
+                },
+                "happy-zencode.customBackgrounds": {
+                    "type": "object",
+                    "default": {
+                        "window": "",
+                        "primarySidebar": "",
+                        "editor": "",
+                        "secondarySidebar": "",
+                        "panel": "",
+                        "welcomePage": ""
+                    },
+                    "properties": {
+                        "window": {
+                            "type": "string",
+                            "description": "Background image for the entire window"
+                        },
+                        "primarySidebar": {
+                            "type": "string",
+                            "description": "Background image for the primary sidebar"
+                        },
+                        "editor": {
+                            "type": "string",
+                            "description": "Background image for the editor area"
+                        },
+                        "secondarySidebar": {
+                            "type": "string",
+                            "description": "Background image for the secondary sidebar"
+                        },
+                        "panel": {
+                            "type": "string",
+                            "description": "Background image for the panel (terminal, output, etc.)"
+                        },
+                        "welcomePage": {
+                            "type": "string",
+                            "description": "Background image for the welcome page"
+                        }
+                    },
+                    "description": "Custom background images for different sections"
+                },
+                "happy-zencode.opacity": {
+                    "type": "object",
+                    "default": {
+                        "window": 0.3,
+                        "primarySidebar": 0.3,
+                        "editor": 0.1,
+                        "secondarySidebar": 0.3,
+                        "panel": 0.3,
+                        "welcomePage": 0.3
+                    },
+                    "properties": {
+                        "window": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for window background"
+                        },
+                        "primarySidebar": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for primary sidebar background"
+                        },
+                        "editor": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for editor background"
+                        },
+                        "secondarySidebar": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for secondary sidebar background"
+                        },
+                        "panel": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for panel background"
+                        },
+                        "welcomePage": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Opacity for welcome page background"
+                        }
+                    },
+                    "description": "Opacity settings for different sections"
+                },
+                "happy-zencode.styling": {
+                    "type": "object",
+                    "default": {
+                        "blur": 0,
+                        "brightness": 1,
+                        "contrast": 1,
+                        "saturate": 1,
+                        "backgroundSize": "cover",
+                        "backgroundRepeat": "no-repeat",
+                        "backgroundPosition": "center"
+                    },
+                    "properties": {
+                        "blur": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 50,
+                            "description": "Blur effect in pixels"
+                        },
+                        "brightness": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 2,
+                            "description": "Brightness adjustment (1 = normal)"
+                        },
+                        "contrast": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 2,
+                            "description": "Contrast adjustment (1 = normal)"
+                        },
+                        "saturate": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 2,
+                            "description": "Saturation adjustment (1 = normal)"
+                        },
+                        "backgroundSize": {
+                            "type": "string",
+                            "enum": ["cover", "contain", "auto", "100% 100%"],
+                            "description": "Background size behavior"
+                        },
+                        "backgroundRepeat": {
+                            "type": "string",
+                            "enum": ["no-repeat", "repeat", "repeat-x", "repeat-y"],
+                            "description": "Background repeat behavior"
+                        },
+                        "backgroundPosition": {
+                            "type": "string",
+                            "enum": ["center", "top", "bottom", "left", "right", "top left", "top right", "bottom left", "bottom right"],
+                            "description": "Background position"
+                        }
+                    },
+                    "description": "Styling options for background images"
+                },
+                "happy-zencode.autoInstall": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically install theme on startup"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^18.x",
+        "@types/vscode": "^1.104.0",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "glob": "^10.0.0"
+    }
+}
