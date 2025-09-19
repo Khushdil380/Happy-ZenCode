@@ -42,6 +42,9 @@ const vscode = __importStar(require("vscode"));
 const JSPatchFile_1 = require("../patching/JSPatchFile");
 const VSCodePath_1 = require("../patching/VSCodePath");
 const EditorPatchGenerator_1 = require("../generators/EditorPatchGenerator");
+const WindowPatchGenerator_1 = require("../generators/WindowPatchGenerator");
+const SidebarPatchGenerator_1 = require("../generators/SidebarPatchGenerator");
+const PanelPatchGenerator_1 = require("../generators/PanelPatchGenerator");
 const Utils_1 = require("../core/Utils");
 /**
  * Main Background class that orchestrates the entire background system
@@ -63,6 +66,9 @@ class Background {
     get config() {
         const config = vscode.workspace.getConfiguration('background');
         const editorConfig = config.get('editor', {});
+        const windowConfig = config.get('window', {});
+        const sidebarConfig = config.get('sidebar', {});
+        const panelConfig = config.get('panel', {});
         return {
             enabled: config.get('enabled', true), // ✅ Fixed: Default to true like package.json
             autoInstall: config.get('autoInstall', true), // ✅ Also enable auto-install by default
@@ -76,7 +82,34 @@ class Background {
                 position: editorConfig.position || 'center center',
                 interval: editorConfig.interval || 0,
                 random: editorConfig.random || false
-            }
+            },
+            window: windowConfig.images && windowConfig.images.length ? {
+                images: windowConfig.images || [],
+                useFront: windowConfig.useFront !== undefined ? windowConfig.useFront : false,
+                style: windowConfig.style || {},
+                styles: windowConfig.styles || [],
+                opacity: windowConfig.opacity !== undefined ? windowConfig.opacity : 0.4,
+                size: windowConfig.size || 'cover',
+                position: windowConfig.position || 'center center'
+            } : undefined,
+            sidebar: sidebarConfig.images && sidebarConfig.images.length ? {
+                images: sidebarConfig.images || [],
+                useFront: sidebarConfig.useFront !== undefined ? sidebarConfig.useFront : false,
+                style: sidebarConfig.style || {},
+                styles: sidebarConfig.styles || [],
+                opacity: sidebarConfig.opacity !== undefined ? sidebarConfig.opacity : 0.3,
+                size: sidebarConfig.size || 'cover',
+                position: sidebarConfig.position || 'center center'
+            } : undefined,
+            panel: panelConfig.images && panelConfig.images.length ? {
+                images: panelConfig.images || [],
+                useFront: panelConfig.useFront !== undefined ? panelConfig.useFront : false,
+                style: panelConfig.style || {},
+                styles: panelConfig.styles || [],
+                opacity: panelConfig.opacity !== undefined ? panelConfig.opacity : 0.3,
+                size: panelConfig.size || 'cover',
+                position: panelConfig.position || 'center center'
+            } : undefined
         };
     }
     /**
@@ -159,8 +192,13 @@ class Background {
                 Utils_1.Utils.debugLog('Cannot apply patches - background is disabled');
                 return false;
             }
-            if (!config.editor.images.length) {
-                Utils_1.Utils.debugLog('No images configured, removing patches');
+            // Check if any section has images configured
+            const hasAnyImages = config.editor.images.length > 0 ||
+                (config.window?.images.length || 0) > 0 ||
+                (config.sidebar?.images.length || 0) > 0 ||
+                (config.panel?.images.length || 0) > 0;
+            if (!hasAnyImages) {
+                Utils_1.Utils.debugLog('No images configured for any section, removing patches');
                 return await this.removePatches();
             }
             // Perform safety checks
@@ -170,25 +208,59 @@ class Background {
                 await vscode.window.showWarningMessage(`Background safety check failed: ${safetyCheck.issues.join(', ')}`);
                 return false;
             }
-            // Generate patch content
-            const generator = new EditorPatchGenerator_1.EditorPatchGenerator(config.editor);
-            const patchContent = generator.create();
-            if (!patchContent) {
-                Utils_1.Utils.debugLog('No patch content generated');
+            // Generate patch content for all sections
+            let combinedPatchContent = '';
+            // Editor patches
+            if (config.editor.images.length > 0) {
+                const editorGenerator = new EditorPatchGenerator_1.EditorPatchGenerator(config.editor);
+                const editorPatch = editorGenerator.create();
+                if (editorPatch) {
+                    combinedPatchContent += editorPatch + '\n';
+                }
+            }
+            // Window patches
+            if (config.window && config.window.images.length > 0) {
+                const windowGenerator = new WindowPatchGenerator_1.WindowPatchGenerator(config.window);
+                const windowPatch = windowGenerator.create();
+                if (windowPatch) {
+                    combinedPatchContent += windowPatch + '\n';
+                }
+            }
+            // Sidebar patches
+            if (config.sidebar && config.sidebar.images.length > 0) {
+                const sidebarGenerator = new SidebarPatchGenerator_1.SidebarPatchGenerator(config.sidebar);
+                const sidebarPatch = sidebarGenerator.create();
+                if (sidebarPatch) {
+                    combinedPatchContent += sidebarPatch + '\n';
+                }
+            }
+            // Panel patches
+            if (config.panel && config.panel.images.length > 0) {
+                const panelGenerator = new PanelPatchGenerator_1.PanelPatchGenerator(config.panel);
+                const panelPatch = panelGenerator.create();
+                if (panelPatch) {
+                    combinedPatchContent += panelPatch + '\n';
+                }
+            }
+            if (!combinedPatchContent) {
+                Utils_1.Utils.debugLog('No patch content generated for any section');
                 return await this.removePatches();
             }
-            Utils_1.Utils.debugLog('Generated patch content', {
-                contentLength: patchContent.length,
-                imageCount: config.editor.images.length
+            Utils_1.Utils.debugLog('Generated combined patch content', {
+                contentLength: combinedPatchContent.length,
+                editorImages: config.editor.images.length,
+                windowImages: config.window?.images.length || 0,
+                sidebarImages: config.sidebar?.images.length || 0,
+                panelImages: config.panel?.images.length || 0
             });
             // Apply patches
-            const success = await this.jsFile.applyPatches(patchContent);
+            const success = await this.jsFile.applyPatches(combinedPatchContent);
             if (success) {
-                Utils_1.Utils.debugLog('Patches applied successfully');
+                Utils_1.Utils.debugLog('Multi-section patches applied successfully');
                 return true;
             }
             else {
-                console.error('[Happy-Zencode] Failed to apply patches');
+                console.error('[Happy-Zencode] Failed to apply multi-section patches');
                 return false;
             }
         }
@@ -224,10 +296,15 @@ class Background {
     async getStatus() {
         const config = this.config;
         const jsFileStatus = await this.jsFile.getStatus();
+        // Count images from all sections
+        const totalImages = config.editor.images.length +
+            (config.window?.images.length || 0) +
+            (config.sidebar?.images.length || 0) +
+            (config.panel?.images.length || 0);
         return {
             enabled: config.enabled,
             jsFileStatus,
-            imageCount: config.editor.images.length,
+            imageCount: totalImages,
             needsRestart: jsFileStatus.needsRestart
         };
     }

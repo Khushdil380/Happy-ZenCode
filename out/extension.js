@@ -192,7 +192,7 @@ function deactivate() {
     }
 }
 function getThemeGalleryHtml() {
-    const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/KatsuteDev/Background/main/Happy-Zencode/assets';
+    const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets';
     return `
 <!DOCTYPE html>
 <html>

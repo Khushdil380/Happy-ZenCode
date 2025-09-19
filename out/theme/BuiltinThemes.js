@@ -9,7 +9,7 @@ exports.getThemeByIndex = getThemeByIndex;
 exports.getThemeByName = getThemeByName;
 exports.getThemeNames = getThemeNames;
 // GitHub repository base URL for images
-const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/KatsuteDev/Background/main/Happy-Zencode/assets';
+const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets';
 exports.BUILTIN_THEMES = [
     {
         name: 'Cosmic Space',

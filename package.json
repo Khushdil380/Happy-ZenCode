@@ -147,6 +147,144 @@
             }
           },
           "description": "Editor background configuration"
+        },
+        "background.window": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.4,
+            "useFront": false,
+            "style": {},
+            "styles": []
+          },
+          "properties": {
+            "images": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "description": "Window background images"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.4,
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Opacity of window background images"
+            },
+            "useFront": {
+              "type": "boolean",
+              "default": false,
+              "description": "Place image above or below content"
+            },
+            "style": {
+              "type": "object",
+              "default": {},
+              "description": "Custom style for window images"
+            },
+            "styles": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "object"
+              },
+              "description": "Individual styles for each window image"
+            }
+          },
+          "description": "Window background configuration"
+        },
+        "background.sidebar": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.3,
+            "useFront": false,
+            "style": {},
+            "styles": []
+          },
+          "properties": {
+            "images": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "description": "Sidebar background images"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.3,
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Opacity of sidebar background images"
+            },
+            "useFront": {
+              "type": "boolean",
+              "default": false,
+              "description": "Place image above or below content"
+            },
+            "style": {
+              "type": "object",
+              "default": {},
+              "description": "Custom style for sidebar images"
+            },
+            "styles": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "object"
+              },
+              "description": "Individual styles for each sidebar image"
+            }
+          },
+          "description": "Sidebar background configuration"
+        },
+        "background.panel": {
+          "type": "object",
+          "default": {
+            "images": [],
+            "opacity": 0.3,
+            "useFront": false,
+            "style": {},
+            "styles": []
+          },
+          "properties": {
+            "images": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "description": "Panel background images"
+            },
+            "opacity": {
+              "type": "number",
+              "default": 0.3,
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Opacity of panel background images"
+            },
+            "useFront": {
+              "type": "boolean",
+              "default": false,
+              "description": "Place image above or below content"
+            },
+            "style": {
+              "type": "object",
+              "default": {},
+              "description": "Custom style for panel images"
+            },
+            "styles": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "object"
+              },
+              "description": "Individual styles for each panel image"
+            }
+          },
+          "description": "Panel background configuration"
         }
       }
     }

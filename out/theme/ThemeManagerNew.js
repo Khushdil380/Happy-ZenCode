@@ -88,10 +88,37 @@ class ThemeManager {
                 interval: 0,
                 random: false
             }, vscode.ConfigurationTarget.Global);
-            // Apply additional sections if they support multi-section backgrounds
-            // Note: Our current implementation focuses on editor, but we're preserving
-            // the theme data for future multi-section support
-            vscode.window.showInformationMessage(`Theme "${theme.name}" applied! 🎨`, 'Install Now', 'Show Preview').then(async (selection) => {
+            // Configure window background
+            await config.update('window', {
+                images: [theme.images.window],
+                opacity: 0.4,
+                useFront: theme.settings.useFront,
+                style: theme.settings.style,
+                styles: [{}],
+                interval: 0,
+                random: false
+            }, vscode.ConfigurationTarget.Global);
+            // Configure sidebar background
+            await config.update('sidebar', {
+                images: [theme.images.primarySidebar],
+                opacity: 0.3,
+                useFront: theme.settings.useFront,
+                style: theme.settings.style,
+                styles: [{}],
+                interval: 0,
+                random: false
+            }, vscode.ConfigurationTarget.Global);
+            // Configure panel background
+            await config.update('panel', {
+                images: [theme.images.panel],
+                opacity: 0.3,
+                useFront: theme.settings.useFront,
+                style: theme.settings.style,
+                styles: [{}],
+                interval: 0,
+                random: false
+            }, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Theme "${theme.name}" applied to all sections! 🎨`, 'Install Now', 'Show Preview').then(async (selection) => {
                 if (selection === 'Install Now') {
                     await vscode.commands.executeCommand('happy-zencode.install');
                 }

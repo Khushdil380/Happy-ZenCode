@@ -22,7 +22,7 @@ export interface ThemeConfig {
 }
 
 // GitHub repository base URL for images
-const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/KatsuteDev/Background/main/Happy-Zencode/assets';
+const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets';
 
 export const BUILTIN_THEMES: ThemeConfig[] = [
     {

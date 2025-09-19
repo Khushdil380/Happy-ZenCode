@@ -234,7 +234,7 @@ export function deactivate() {
 }
 
 function getThemeGalleryHtml(): string {
-    const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/KatsuteDev/Background/main/Happy-Zencode/assets';
+    const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets';
     
     return `
 <!DOCTYPE html>

@@ -33,12 +33,12 @@ export const BUILTIN_THEMES: ThemeDefinition[] = [
         name: 'Zen Ocean',
         description: 'Calming ocean-inspired blue theme',
         backgrounds: {
-            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/window/1.png',
-            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/psidebar/1.png',
-            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/editor/1.png',
-            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/ssidebar/1.png',
-            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/panel/1.png',
-            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencodhttps://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/Welcome/1.png'
+            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/window/1.png',
+            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/psidebar/1.png',
+            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/editor/1.png',
+            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/ssidebar/1.png',
+            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/panel/1.png',
+            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/Welcome/1.png'
         },
         colorCustomizations: {
             'editor.background': '#001a2e',
@@ -70,12 +70,12 @@ export const BUILTIN_THEMES: ThemeDefinition[] = [
         name: 'Zen Forest',
         description: 'Natural forest-inspired green theme',
         backgrounds: {
-            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/window/2.png',
-            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/psidebar/2.png',
-            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/editor/2.png',
-            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/ssidebar/2.png',
-            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/panel/2.png',
-            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/Welcome/2.png'
+            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/window/2.png',
+            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/psidebar/2.png',
+            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/editor/2.png',
+            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/ssidebar/2.png',
+            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/panel/2.png',
+            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/Welcome/2.png'
         },
         colorCustomizations: {
             'editor.background': '#0d2818',
@@ -107,12 +107,12 @@ export const BUILTIN_THEMES: ThemeDefinition[] = [
         name: 'Zen Sunset',
         description: 'Warm sunset-inspired orange and pink theme',
         backgrounds: {
-            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/window/3.png',
-            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/psidebar/3.png',
-            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/editor/3.png',
-            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/ssidebar/3.png',
-            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/panel/3.png',
-            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/Welcome/3.png'
+            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/window/3.png',
+            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/psidebar/3.png',
+            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/editor/3.png',
+            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/ssidebar/3.png',
+            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/panel/3.png',
+            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/Welcome/3.png'
         },
         colorCustomizations: {
             'editor.background': '#2a1810',
@@ -144,12 +144,12 @@ export const BUILTIN_THEMES: ThemeDefinition[] = [
         name: 'Zen Night',
         description: 'Deep night-inspired dark theme',
         backgrounds: {
-            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/window/4.png',
-            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/psidebar/4.png',
-            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/editor/4.png',
-            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/ssidebar/4.png',
-            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/panel/4.png',
-            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/Welcome/4.png'
+            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/window/4.png',
+            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/psidebar/4.png',
+            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/editor/4.png',
+            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/ssidebar/4.png',
+            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/panel/4.png',
+            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/Welcome/4.png'
         },
         colorCustomizations: {
             'editor.background': '#0a0a0a',
@@ -181,12 +181,12 @@ export const BUILTIN_THEMES: ThemeDefinition[] = [
         name: 'Zen Cosmic',
         description: 'Mystical cosmic-inspired purple theme',
         backgrounds: {
-            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/window/5.png',
-            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/psidebar/5.png',
-            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/editor/5.png',
-            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/ssidebar/5.png',
-            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/panel/5.png',
-            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/Happy-Zencode/assets/Welcome/5.png'
+            window: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/window/5.png',
+            primarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/psidebar/5.png',
+            editor: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/editor/5.png',
+            secondarySidebar: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/ssidebar/5.png',
+            panel: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/panel/5.png',
+            welcomePage: 'https://raw.githubusercontent.com/Khushdil380/Happy-ZenCode/main/assets/Welcome/5.png'
         },
         colorCustomizations: {
             'editor.background': '#1a0d2a',
