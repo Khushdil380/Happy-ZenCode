@@ -99,7 +99,11 @@ class BackgroundManager {
             vscode.window.showInformationMessage('Switched to custom theme to use your uploaded background.');
         }
         const actionMessage = imagePath ? 'Background image updated!' : 'Background image removed!';
-        vscode.window.showInformationMessage(`${actionMessage} Area: ${selectedArea.label}`);
+        vscode.window.showInformationMessage(`${actionMessage} Area: ${selectedArea.label}. Use "Happy Zencode: Install Theme" to apply changes.`, 'Install Now').then(selection => {
+            if (selection === 'Install Now') {
+                vscode.commands.executeCommand('happy-zencode.install');
+            }
+        });
     }
     /**
      * Handle file upload
@@ -128,8 +132,8 @@ class BackgroundManager {
             await fs_1.promises.mkdir(storageDir, { recursive: true });
             const targetPath = path.join(storageDir, newFileName);
             await fs_1.promises.copyFile(sourceFile, targetPath);
-            // Return file:// URL for local files
-            return vscode.Uri.file(targetPath).toString();
+            // Return properly formatted file path for CSS
+            return this.formatPathForCSS(targetPath);
         }
         catch (error) {
             vscode.window.showErrorMessage(`Failed to copy background image: ${error}`);
@@ -157,6 +161,14 @@ class BackgroundManager {
             }
         });
         return url || '';
+    }
+    /**
+     * Format file path for CSS usage (use vscode-file protocol like original Background extension)
+     */
+    formatPathForCSS(filePath) {
+        // Convert Windows backslashes to forward slashes and use vscode-file protocol
+        const normalizedPath = filePath.replace(/\\/g, '/').replace(/^\/+/g, '');
+        return `vscode-file://vscode-app/${normalizedPath}`;
     }
     /**
      * Check if URL looks like an image URL

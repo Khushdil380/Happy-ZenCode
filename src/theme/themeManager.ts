@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
+import * as path from 'path';
 import { ThemeDefinition, BUILTIN_THEMES } from './themeDefinitions';
 
 export class ThemeManager {
@@ -159,15 +161,37 @@ export class ThemeManager {
 
         const selectors = this.getAreaSelectors(area);
         
-        return selectors.map(selector => `
-            ${selector}::before {
+        // Handle different types of image paths (use original Background extension approach)
+        let processedImagePath = '';
+        
+        if (imagePath.startsWith('http')) {
+            // Keep HTTP URLs as-is
+            processedImagePath = imagePath;
+        } else if (imagePath.startsWith('vscode-file://')) {
+            // Already properly formatted
+            processedImagePath = imagePath;
+        } else {
+            // Convert local file paths to vscode-file protocol
+            const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/g, '');
+            processedImagePath = `vscode-file://vscode-app/${cleanPath}`;
+        }
+        
+        return selectors.map(selector => {
+            // For window/body, use ::before pseudo-element
+            const pseudoElement = area === 'window' ? '::before' : '::after';
+            
+            return `
+            ${selector} {
+                position: relative;
+            }
+            ${selector}${pseudoElement} {
                 content: '';
-                position: fixed;
+                position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url('${imagePath}');
+                background-image: url('${processedImagePath}');
                 background-size: ${backgroundSize};
                 background-repeat: ${backgroundRepeat};
                 background-position: ${backgroundPosition};
@@ -176,23 +200,40 @@ export class ThemeManager {
                 filter: ${filter};
                 z-index: -1;
                 pointer-events: none;
-            }
-        `).join('\n');
+                transition: opacity 1s ease-in-out;
+            }`;
+        }).join('\n');
     }
 
     /**
-     * Get CSS selectors for each area
+     * Get CSS selectors for each area (based on original Background extension)
      */
     private getAreaSelectors(area: string): string[] {
         const selectorMap: { [key: string]: string[] } = {
-            window: ['.monaco-workbench'],
-            primarySidebar: ['.split-view-view:first-child .sidebar'],
-            editor: ['.editor-container', '.monaco-editor'],
-            secondarySidebar: ['.split-view-view:last-child .sidebar'],
-            panel: ['.panel'],
-            welcomePage: ['.welcomePage']
+            window: ['body'],
+            primarySidebar: ['.split-view-view > .part.sidebar'],
+            editor: ['.split-view-view > .editor-group-container'],
+            secondarySidebar: ['.split-view-view > .part.auxiliarybar'],
+            panel: ['.split-view-view > .part.panel'],
+            welcomePage: ['.welcome-view', '.editor-group-container .welcome-page']
         };
 
         return selectorMap[area] || [];
+    }
+
+    /**
+     * Get MIME type for image extensions
+     */
+    private getMimeType(extension: string): string {
+        const mimeMap: { [key: string]: string } = {
+            'png': 'image/png',
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg',
+            'gif': 'image/gif',
+            'webp': 'image/webp',
+            'bmp': 'image/bmp',
+            'svg': 'image/svg+xml'
+        };
+        return mimeMap[extension] || 'image/png';
     }
 }

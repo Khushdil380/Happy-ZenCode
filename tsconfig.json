@@ -11,15 +11,19 @@
         "rootDir": "src",
         "strict": false,
         "moduleResolution": "node",
-        "declaration": true,
-        "declarationMap": true,
+        "declaration": false,
+        "declarationMap": false,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "types": ["node", "vscode"]
     },
+    "include": [
+        "src/**/*"
+    ],
     "exclude": [
         "node_modules",
-        ".vscode-test"
+        ".vscode-test",
+        "out"
     ]
 }

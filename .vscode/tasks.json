@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "compile",
+            "group": "build",
+            "presentation": {
+                "panel": "shared"
+            },
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "label": "npm: compile"
+        },
+        {
+            "type": "npm", 
+            "script": "watch",
+            "group": "build",
+            "presentation": {
+                "panel": "shared"
+            },
+            "isBackground": true,
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "label": "npm: watch"
+        },
+        {
+            "label": "TypeScript compile",
+            "command": "npx",
+            "args": ["tsc", "-p", "."],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": [
+                "$tsc"
+            ]
+        }
+    ]
+}
